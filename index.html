@@ -10,25 +10,29 @@
 <body>
     <div class="container">
         <h1>Password Generator</h1>
-            <p>Password config options</p>
-            
-            <label for="char">Special Character</label>
-            <input type="checkbox" name="char" id="char" >
+            <p>Password config options:</p>
 
-            <label for="num">Number</label>
-            <input type="checkbox" name="num" id="num" >
+            <div class="field">
+                <label for="char">Special Character</label>
+                <input type="checkbox" name="char" id="char" >
+            </div>
+
+            <div class="field">
+                <label for="num">Number</label>
+                <input type="checkbox" name="num" id="num" >
+            </div>
             
-            <label for="char">Special Character</label>
-            <input type="checkbox" name="char" id="char" >
+            <div class="field">
+                <label for="caps">Uppercase alphabets</label>
+                <input type="checkbox" name="caps" id="caps" >
+            </div>
             
-            <label for="caps">Uppercase alphabets</label>
-            <input type="checkbox" name="caps" id="caps" >
-            
-            <label for="len">Length</label>
-            <input type="text" name="len" id="len">
+            <div class="field">
+                <label for="len">Length</label>
+                <input type="number" name="len" id="len" autocomplete="off">
+            </div>
             
             <button type="submit">Get a password!</button>
-
 
         <div class="result">
             <p>Password here</p>

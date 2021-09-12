@@ -1,33 +1,38 @@
-const len = document.querySelector('#len');
-const number = document.querySelector('#number');
-const char = document.querySelector('#char');
-const caps = document.querySelector('#caps');
 const button = document.querySelector('button');
 const result = document.querySelector('.result');
 
 button.addEventListener('click', newPassword);
-// ?${params.toString()}
+
 async function newPassword() {
-// console.log(len.value);
-// console.log(char.checked);
-let stringss = []
-if(char.checked) {
-    stringss.push('char true')
-}
-if(num.checked) {
-    stringss.push('num: true')
-}
-// console.log(stringss);
-let params2 = (stringss).join();
-let params = new URLSearchParams({params2});
+    let fields = [];
 
-console.log(`xdddddddd ${params2}`);
+    if(char.checked) {
+        fields.push('char=true')
+    }
 
-    let newPwd = await fetch(`https://passwordinator.herokuapp.com/generate?${params}`);
-    let res = await newPwd.json();
+    if(num.checked) {
+        fields.push('num=true')
+    }
 
-    // console.log(`the baseeeee is ${newPwd}`);
-    console.log(res);
+    if(caps.checked) {
+        fields.push('caps=true')
+    }
 
-    result.innerHTML = `<p>The new password is: ${res.data}</p>`
+    if(len.value !== '') {
+        fields.push(`len=${len.value}`)
+    }
+
+    let fieldsToString = fields.join('&');
+    let params = new URLSearchParams(fieldsToString);
+
+    try {
+        let newPwd = await fetch(`https://passwordinator.herokuapp.com/generate?${params.toString()}`);
+        let res = await newPwd.json();
+        result.innerHTML = `<p>The new password is: ${res.data}</p>`;
+        
+    } catch (error) {
+        result.innerHTML = `<p>Error in the request, please try again later 🙁</p>`;
+        console.log(error);
+    }
+    
 }
