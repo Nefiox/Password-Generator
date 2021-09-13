@@ -28,11 +28,11 @@ async function newPassword() {
     try {
         let newPwd = await fetch(`https://passwordinator.herokuapp.com/generate?${params.toString()}`);
         let res = await newPwd.json();
-        result.innerHTML = `<p>The new password is: ${res.data}</p>`;
+        result.innerHTML = `
+        <p class="pwd">${res.data}</p>`;
         
     } catch (error) {
         result.innerHTML = `<p>Error in the request, please try again later 🙁</p>`;
         console.log(error);
     }
-    
-}
+};
